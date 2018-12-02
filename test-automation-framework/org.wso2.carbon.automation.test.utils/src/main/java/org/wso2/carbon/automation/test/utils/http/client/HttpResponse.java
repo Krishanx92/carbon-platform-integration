@@ -18,6 +18,8 @@
 
 package org.wso2.carbon.automation.test.utils.http.client;
 
+
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +30,7 @@ public class HttpResponse {
     private int responseCode;
     private String responseMessage;
     private Map<String, String> headers;
+    private Map<String, List<String>> multiHeaders;
 
     public HttpResponse(String data, int responseCode) {
         this.data = data;
@@ -38,6 +41,12 @@ public class HttpResponse {
         this.data = data;
         this.responseCode = responseCode;
         this.headers = headers;
+    }
+
+    public HttpResponse(String data, int responseCode, Map<String, List<String>> multiHeaders, String... ignore) {
+        this.data = data;
+        this.responseCode = responseCode;
+        this.multiHeaders = multiHeaders;
     }
 
     public String getData() {
@@ -62,6 +71,14 @@ public class HttpResponse {
 
     public Map<String, String> getHeaders() {
         return headers;
+    }
+
+    public Map<String, List<String>> getMultiHeaders() {
+        return multiHeaders;
+    }
+
+    public void setMultiHeaders(Map<String, List<String>> multiHeaders) {
+        this.multiHeaders = multiHeaders;
     }
 
     public String getResponseMessage() {
